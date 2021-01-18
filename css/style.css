@@ -95,7 +95,11 @@ body {
   justify-content: space-between;
 }
 .posts {
+  display: none;
   width: 67%;
+}
+.posts.visible {
+  display: block;
 }
 .post {
   background-color: #fff;
@@ -123,13 +127,17 @@ body {
 }
 .tags {
   margin-bottom: 22px;
+  color: #bfbfbf;
 }
 .tag {
   color: #bfbfbf;
   font-size: 14px;
   line-height: 22px;
-  margin-right: 10px;
+  margin-left: 10px;
   text-decoration: none;
+}
+.tag:first-child {
+  margin-left: 0;
 }
 .post-footer {
   border-top: 1px solid #e8e8e8;
@@ -173,6 +181,7 @@ body {
   height: 34px;
   margin-left: 9px;
   border-radius: 4px;
+  object-fit: cover;
 }
 .author-username {
   display: block;
@@ -248,6 +257,9 @@ body {
   background-color: #fafafa;
   border: 1px solid #e8e8e8;
   padding: 15px 25px;
+
+}
+.user-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -260,6 +272,9 @@ body {
 .user-avatar {
   border-radius: 50%;
   margin-right: 17px;
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
 }
 .user-name {
   font-weight: 600;
@@ -333,6 +348,9 @@ body {
   width: 100%;
   margin-top: 20px;
 }
+.button-new-post.visible {
+  display: flex;
+}
 .icon-fire {
   fill: #fff;
   width: 11px;
@@ -404,11 +422,12 @@ body {
   flex-direction: column;
 }
 .add-title,
-.add-text {
+.add-text, .add-tags {
   background: #ffffff;
   border: 1px solid #e8e8e8;
   padding: 23px 30px;
   margin-bottom: 16px;
+  resize: none;
 }
 .add-text {
   min-height: 362px;
@@ -420,6 +439,56 @@ body {
 }
 .add-post .button-outline {
   margin-right: 1%;
+}
+.edit-container {
+  display: none;
+}
+.edit-container.visible {
+  display: block;
+}
+.edit {
+  text-decoration: none;
+
+}
+.icon-edit {
+  width: 20px;
+}
+.edit-label {
+  display: block;
+  margin-bottom: 10px;
+}
+.edit-input {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  padding: 5px 10px;
+}
+.edit-btn {
+  background-color: #fa8c16;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  line-height: 32px;
+  color: #fff;
+  font-size: 15px;
+  width: 100%;
+}
+.edit-title {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #595959;
+  text-transform: uppercase;
+}
+.add-post {
+  display: none;
+  flex-direction: column;
+  width: 67%;
+}
+.add-post.visible {
+  display: flex;
 }
 @media (max-width: 990px) {
   .menu-toggle {
@@ -466,6 +535,7 @@ body {
   .sidebar.visible {
     transform: translateX(0);
   }
+
   .posts {
     width: 100%;
   }

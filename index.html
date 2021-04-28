@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Выводим заголовок -->
-    <title>Pikadu — главная</title>
+    <title>Ставка дня</title>
     <!-- Подключаем normalize -->
     <link rel="stylesheet" href="css/normalize.css">
     <!-- Подключаем стили -->
@@ -23,25 +23,8 @@
 <header class="header">
     <div class="header-wrapper">
         <a href="/" class="header-logo">
-            <img class="header-logo-image" src="img/logo.svg" alt="logo: Pikadu">
+            Ставка дня
         </a>
-        <nav class="header-nav">
-            <ul class="header-menu">
-                <li class="header-menu-item"><a href="#" class="header-menu-link">Свежее</a></li>
-                <li class="header-menu-item"><a href="#" class="header-menu-link">Лучшее</a></li>
-                <li class="header-menu-item"><a href="#" class="header-menu-link">Горячее</a></li>
-                <li class="header-menu-item"><a href="#" class="header-menu-link">Подписки</a></li>
-            </ul>
-
-        </nav>
-        <!-- /.header-nav -->
-        <div class="input-group search">
-            <input type="search" class="search-input" placeholder="Поиск по сайту">
-            <button class="search-button">
-                <img src="img/search.svg" alt="icon: search" class="search-icon">
-            </button>
-        </div>
-        <!-- /.input-group -->
         <a href="#" class="menu-toggle" id="menu-toggle">
             <span></span>
             <span></span>
@@ -153,15 +136,15 @@
         </a>
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Комментарий дня</h2>
+                <h2 class="card-title">Ставка дня</h2>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <a href="#" class="card-body-title">Как обмануть банкомат, если вы хотите снять больше наличных</a>
-                <p class="card-text">Таким образом укрепление и развитие структуры требуют от нас анализа форм развития.
-                    Не следует, однако забывать, что реализация намеченных плановых заданий требуют от нас анализа
-                    позиций, занимаемых участниками в отношении поставленных
-                    задач. Задача организации, в особенности же консультация...</p>
+                <a href="#" class="card-body-title">Лига чемпионов: Манчестер Сити - ПСЖ</a>
+                <p class="card-text">ПСЖ против Манчестер Сити. Мне именно клуб Гвардиолы видеться фаворитом в данной
+                    игре. Оба клуба играют в атакующий футбол,оба коллектива не сидят в защите. Как мне кажется,голы в
+                    этой игре будут. Сити обладает хорошей атакой,как и хозяева,но все же оборона у команды Гвардиолы
+                    солиднее. Думаю гости выиграют и забьют два гола.</p>
             </div>
             <!-- /.card-body -->
         </div>
@@ -185,8 +168,6 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-
-
 
 
     console.log(firebase)
@@ -215,12 +196,12 @@
         user: null,
         initUser(handler) {
             firebase.auth().onAuthStateChanged(user => {
-                if(user){
+                if (user) {
                     this.user = user;
                 } else {
                     this.user = null;
                 }
-                if(handler) handler();
+                if (handler) handler();
             })
         },
         logIn(email, password, handler) {
@@ -230,7 +211,7 @@
                 .catch(err => {
                     const errCode = err.code;
                     const errMessage = err.message;
-                    if(errCode === 'auth/wrong-password') {
+                    if (errCode === 'auth/wrong-password') {
                         console.log(errMessage);
                         alert('Neverniy parol')
 
@@ -265,10 +246,10 @@
                 .then(data => {
                     this.editUser(email.substring(0, email.indexOf('@')), null, handler);
                 })
-                .catch (err => {
+                .catch(err => {
                     const errCode = err.code;
                     const errMessage = err.message;
-                    if(errCode === 'auth/weak-password') {
+                    if (errCode === 'auth/weak-password') {
                         console.log(errMessage);
                         alert('Slabiy parol')
 
@@ -289,7 +270,7 @@
             //     alert('Пользователь с таким email зареган!') //если тру, то выводим сообщение
             // }
         },
-        editUser(displayName, photoURL , handler) {
+        editUser(displayName, photoURL, handler) {
 
             const user = firebase.auth().currentUser;
 
@@ -320,7 +301,7 @@
                 .then(() => {
                     alert('Pismo otpravleno!')
                 })
-                .catch( err => {
+                .catch(err => {
                     console.log(err);
                 })
         }
@@ -333,7 +314,7 @@
     })
 
 
-    const setPosts =  {
+    const setPosts = {
         allPosts: [],
         addPost(title, text, tags, handler) {
             this.allPosts.unshift({
@@ -409,31 +390,6 @@
             </div>
 
             <div class="post-footer">
-                <div class="post-buttons">
-                    <button class="post-button likes">
-                        <svg width="19" height="20" class="icon icon-like">
-                            <use xlink:href="img/icons.svg#like"></use>
-                        </svg>
-                        <span class="likes-counter">${like}</span>
-                    </button>
-                    <button class="post-button comments">
-                        <svg width="21" height="21" class="icon icon-comment">
-                            <use xlink:href="img/icons.svg#comment"></use>
-                        </svg>
-                        <span class="comments-counter">${comments}</span>
-                    </button>
-                    <button class="post-button save">
-                        <svg width="19" height="19" class="icon icon-save">
-                            <use xlink:href="img/icons.svg#save"></use>
-                        </svg>
-                    </button>
-                    <button class="post-button share">
-                        <svg width="17" height="19" class="icon icon-share">
-                            <use xlink:href="img/icons.svg#share"></use>
-                        </svg>
-                    </button>
-                </div>
-
                 <div class="post-author">
                     <div class="author-about">
                         <a href="#" class="author-username">${author.displayName}</a>
@@ -450,8 +406,6 @@
         postsWrapper.innerHTML = postsHTML;
 
     }
-
-
 
 
     const init = () => {
@@ -490,14 +444,14 @@
             event.preventDefault();
             showAddPost();
         });
-        addPostElem.addEventListener('submit', event=> {
+        addPostElem.addEventListener('submit', event => {
             event.preventDefault();
             const {title, text, tags} = addPostElem.elements; //Деструктуризация
-            if(title.value.length < 6) {
+            if (title.value.length < 6) {
                 alert('Slishkom kotokiy zagolovok');
                 return;
             }
-            if(text.value.length < 50) {
+            if (text.value.length < 50) {
                 alert('Slishkom kotokiy post');
                 return;
             }
